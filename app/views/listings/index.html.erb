@@ -1,0 +1,7 @@
+<h1>TEST</h1>
+
+<% @listings.each do | listing |%>
+<%= listing.name  %>
+<% end %>
+
+<%= link_to "add a listing", new_listing_path %>
