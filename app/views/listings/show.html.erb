@@ -10,4 +10,12 @@
 
   <%= link_to "edit", edit_listing_path(@listing) %>
   <%= link_to "delete", listing_path(@listing), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete #{@listing.name} from your listings?"} %>
+
+
+  <div data-controller="toggle" class="mt-5">
+  <button data-action="click->toggle#fire" class="btn btn-outline-primary">Book this listing</button>
+  <div data-toggle-target="togglableElement" class="d-none">
+  <%= render "bookings/new", booking: @booking %>
+  </div>
+</div>
 </div>
