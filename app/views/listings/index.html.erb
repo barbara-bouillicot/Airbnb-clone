@@ -1,7 +1,9 @@
-<h1>TEST</h1>
+<div class="container">
+  <h1>All the listings</h1>
 
-<% @listings.each do | listing |%>
-<%= listing.name  %>
-<% end %>
+    <% @listings.each do | listing |%>
+    <%= link_to listing.name, listing_path(listing) %>
+    <% end %>
 
 <%= link_to "add a listing", new_listing_path %>
+</div>

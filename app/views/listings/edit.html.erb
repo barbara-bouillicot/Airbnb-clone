@@ -1,0 +1,14 @@
+<div class="container w-25 my-3">
+  <h1>Edit your listing</h1>
+
+  <%= simple_form_for(@listing) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :address %>
+    <%= f.input :availability_from %>
+    <%= f.input :availability_to %>
+    <%= f.input :maximum_pets %>
+    <%= f.input :home_type %>
+    <%= f.input :price %>
+    <%= f.submit class:"btn"%>
+<% end %>
+</div>
