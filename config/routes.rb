@@ -14,8 +14,11 @@ Rails.application.routes.draw do
 
   resources :bookings, only: [:index , :show]
 
-  resources :listings, only:[ :index, :show, :new, :create, :edit, :update, :destroy] do
-    resources :bookings, only: [ :new, :create]
+  resources :listings, only:[ :index, :show, :new, :create, :edit, :update, :destroy, :my_listings] do
+    resources :bookings, only: [ :new, :create, :destroy]
+    collection do
+      get :my_listings
+    end
   end
 
 end

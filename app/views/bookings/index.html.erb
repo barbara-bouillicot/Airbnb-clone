@@ -1,4 +1,6 @@
 <div class="container">
   <% @bookings.each do | booking | %>
-  <%= booking.id, booking.user %>
+  <%= link_to booking.id, booking_path(booking)  %>
+  <%= booking.start_date %>
+  <% end %>
 </div>

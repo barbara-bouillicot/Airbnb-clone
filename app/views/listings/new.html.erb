@@ -3,11 +3,16 @@
 
   <%= simple_form_for(@listing) do |f| %>
     <%= f.input :name %>
-    <%= f.input :address %>
+    <%= f.input :address,
+                required: true,
+                autofocus: true,
+                input_html: {data: {address_autocomplete_target:  "address"}, class: "d-none"},
+                wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
     <%= f.input :availability_from,  as: :string, input_html: { data: { controller: "datepicker" } } %>
     <%= f.input :availability_to, as: :string, input_html: { data: { controller: "datepicker" } } %>
     <%= f.input :maximum_pets %>
     <%= f.input :home_type %>
+    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
     <%= f.input :price %>
     <%= f.submit class:"btn"%>
 <% end %>

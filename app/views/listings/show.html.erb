@@ -2,6 +2,10 @@
   <h2>ONE LISTING</h2>
   <%= @listing.name %>
 
+  <% @listing.photos.each do |photo| %>
+  <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+<% end %>
+
   <%= link_to "book", new_listing_booking_path(@listing) %>
 
   <%= link_to "edit", edit_listing_path(@listing) %>

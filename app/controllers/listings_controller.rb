@@ -2,7 +2,22 @@ class ListingsController < ApplicationController
   before_action :set_listing, only:[:show,:edit,:update,:destroy]
 
  def index
-  @listings = Listing.all
+  if params[:query].present?
+    @listings = Listing.search_by_name_address_and_home_type(params[:query])
+  else
+    @listings = Listing.all
+  end
+  @markers = @listings.geocoded.map do |listing|
+    {
+      lat: listing.latitude,
+      lng: listing.longitude,
+      info_window_html: render_to_string(partial: "info_window", locals: {listing: listing})
+    }
+  end
+ end
+
+ def my_listings
+  @listings = Listing.where(user: current_user)
  end
 
  def show
@@ -42,6 +57,6 @@ private
  end
 
  def listing_params
-  params.require(:listing).permit(:name, :address, :availability_from, :availability_to, :maximum_pets, :home_type, :price)
+  params.require(:listing).permit(:name, :address, :availability_from, :availability_to, :maximum_pets, :home_type, :price, photos: [])
  end
 end
