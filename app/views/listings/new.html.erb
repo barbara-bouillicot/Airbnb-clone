@@ -4,8 +4,8 @@
   <%= simple_form_for(@listing) do |f| %>
     <%= f.input :name %>
     <%= f.input :address %>
-    <%= f.input :availability_from %>
-    <%= f.input :availability_to %>
+    <%= f.input :availability_from,  as: :string, input_html: { data: { controller: "datepicker" } } %>
+    <%= f.input :availability_to, as: :string, input_html: { data: { controller: "datepicker" } } %>
     <%= f.input :maximum_pets %>
     <%= f.input :home_type %>
     <%= f.input :price %>
