@@ -24,6 +24,15 @@
   </div>
 </div>
 
+<h2>Reviews</h2>
+<% @reviews.each do |review| %>
+  <div>
+    <p><%= review.comment %></p>
+    <p>Rating: <%= review.rating %></p>
+    <!-- Add additional details here -->
+  </div>
+<% end %>
+
 
 
   <%= link_to "book", new_listing_booking_path(@listing) %>

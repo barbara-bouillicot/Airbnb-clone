@@ -12,7 +12,9 @@ Rails.application.routes.draw do
 
   root to: "pages#home"
 
-  resources :bookings, only: [:index , :show]
+  resources :bookings, only: [:index , :show] do
+    resources :reviews, only: [:new, :create ]
+  end
 
   resources :listings, only:[ :index, :show, :new, :create, :edit, :update, :destroy, :my_listings] do
     resources :bookings, only: [ :new, :create, :destroy]
@@ -20,5 +22,6 @@ Rails.application.routes.draw do
       get :my_listings
     end
   end
+  resources :favorite_listings, only:[:index, :create, :destroy]
 
 end

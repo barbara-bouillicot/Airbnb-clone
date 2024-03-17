@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_16_183230) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_17_163230) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -54,6 +54,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_16_183230) do
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
+  create_table "favorite_listings", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "listing_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["listing_id"], name: "index_favorite_listings_on_listing_id"
+    t.index ["user_id"], name: "index_favorite_listings_on_user_id"
+  end
+
   create_table "listings", force: :cascade do |t|
     t.string "name"
     t.string "address"
@@ -68,6 +77,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_16_183230) do
     t.float "latitude"
     t.float "longitude"
     t.index ["user_id"], name: "index_listings_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.text "comment"
+    t.float "rating"
+    t.bigint "booking_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["booking_id"], name: "index_reviews_on_booking_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -91,5 +109,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_16_183230) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bookings", "listings"
   add_foreign_key "bookings", "users"
+  add_foreign_key "favorite_listings", "listings"
+  add_foreign_key "favorite_listings", "users"
   add_foreign_key "listings", "users"
+  add_foreign_key "reviews", "bookings"
 end
