@@ -1,0 +1,23 @@
+.carousel-item img{
+  border-radius:6px;
+  max-width: 100%;
+  object-fit: cover;
+  height: 300px;
+}
+
+.carousel {
+  width: 100%;
+}
+
+.fa-heart{
+  position: absolute;
+  color: white;
+  top:10px;
+  right:10px;
+  z-index: 1;
+}
+
+.carousel-control-prev, .carousel-control-next{
+  height: 70%;
+  margin-top: 30px;
+}

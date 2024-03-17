@@ -2,9 +2,29 @@
   <h2>ONE LISTING</h2>
   <%= @listing.name %>
 
-  <% @listing.photos.each do |photo| %>
-  <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-<% end %>
+  <div class="d-flex flex-wrap">
+    <% @listing.photos.each_with_index do |photo, index| %>
+      <% if index.zero? %>
+        <div class="col-sm-6">
+          <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+        </div>
+      <% else %>
+        <% if index == 1 %>
+        <div class="col-sm-6">
+          <div class="row">
+        <% end %>
+          <div class="col-sm-6">
+            <%= cl_image_tag photo.key, height: 150, width: 200, crop: :fill %>
+          </div>
+        <% if (index + 1) % 2 == 0 %>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+
 
   <%= link_to "book", new_listing_booking_path(@listing) %>
 
