@@ -1,0 +1,29 @@
+<div class="container w-50">
+
+<div class="d-flex justify-content-between m-3">
+    <h3>My profile</h3>
+    <div class="d-flex justify-content-evenly w-25">
+      <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, style: "text-decoration: none" do %>
+      <i class="fa-solid fa-right-from-bracket"></i>
+      <% end %>
+      <%= link_to edit_registration_path(current_user) do %>
+      <i class="fa-solid fa-user-pen"></i>
+      <% end %>
+    </div>
+</div>
+<div class="container d-flex justify-content-between mt-3">
+  <div class="img-profile w-25 mb-5">
+
+    <% if @user.photo.attached? %>
+      <%= cl_image_tag(@user.photo.key, class: "avatar-large") %>
+    <% end %>
+  </div>
+</div>
+  <h1><%= @user.first_name %></h1>
+
+  <p><i class="fa-solid fa-location-dot"></i> <%= @user.address %></p>
+  <div class="separation-line mb-3"></div>
+    <p><%= @user.pet_name %></p>
+    <p><%= @user.bio %></p>
+  <div class="separation-line mb-3"></div>
+</div>

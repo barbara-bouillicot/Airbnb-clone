@@ -11,3 +11,28 @@
 @import "components/index";
 @import "pages/index";
 @import url("https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css");
+
+body{
+  background-color: white;
+}
+
+.booking{
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.fa-house-medical{
+  color:#ff385c;
+  font-size:32px;
+}
+
+.fa-pen, .fa-trash{
+  color: #ff385c;
+}
+
+a{
+  text-decoration: none;
+  color: black;
+}

@@ -3,10 +3,22 @@
   <%= @booking.id %>
   <%= @booking.total %>
 
-  <%= link_to "delete",  listing_booking_path(@booking), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete #{@booking.id} from your bookings?"} %>
+  <%= link_to "delete",  bookings_path(@booking), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete #{@booking.id} from your bookings?"} %>
   <%= link_to "Add a review",  new_booking_review_path(@booking) %>
-</div>
 
-<% @booking.reviews.each do | review | %>
-<%= review.comment %>
-<% end %>
+  <div class="reviews w-50">
+    <h2><%= @reviews.count %> Reviews</h2>
+    <% @reviews.each do |review| %>
+      <div class="user d-flex">
+        <div class="user-photo">
+          <%= cl_image_tag(review.booking.user.photo.key, class: "avatar", alt: "avatar") %>
+        </div>
+        <div class="user-infos mx-3">
+          <p><strong><%= review.booking.user.first_name %></strong><br><%= review.booking.user.address %></p>
+        </div>
+      </div>
+      <p><i class="fa-solid fa-star"></i> <%= review.rating %></p>
+      <p><%= review.comment %></p>
+    <% end %>
+  </div>
+</div>

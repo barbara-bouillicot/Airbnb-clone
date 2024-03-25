@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AirbnbClone</title>
+    <title>FurBnB</title>
+    <link rel="icon" type="image/png" href="favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,9 +12,11 @@
   </head>
 
   <body>
+      <%= render "shared/navbar" %>
       <%= render "shared/flashes" %>
       <!--<p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>-->
     <%= yield %>
+    <%= render "shared/footer" %>
   </body>
 </html>

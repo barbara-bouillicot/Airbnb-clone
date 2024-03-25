@@ -1,26 +1,27 @@
 class FavoriteListingsController < ApplicationController
-
   def index
-    @favorite_listings = FavoriteListing.all
+    @favorites = current_user.favorite_listings.includes(:listing)
   end
 
   def create
-    @favorite_listing = current_user.favorite_listings.create(favorite_listing_params)
-     if favorite_listing.valid?
-         render json: favorite_listing.listing, status: :created
-     else
-         render json: favorite_listing.errors, status: :unprocessable_entity
-     end
+    @listing = Listing.find(params[:listing_id])
+    @favorite_listing = current_user.favorite_listings.new(listing: @listing)
+
+    if @favorite_listing.save
+      head :ok
+    else
+      render json: { errors: @favorite_listing.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   def destroy
-    render json: FavoriteListing.find_by(item_id: Listing.find(params[:id]).id, user_id: current_user.id).destroy
+    @listing = Listing.find(params[:listing_id])
+    @favorite_listing = current_user.favorite_listings.find_by(listing: @listing)
+    if @favorite_listing
+      @favorite_listing.destroy
+      head :ok
+    else
+      head :not_found
+    end
   end
-
-private
-
-  def favorite_item_params
-    params.require(:favorite_listing).permit(:listing_id, :user_id)
-  end
-
 end

@@ -1,0 +1,29 @@
+.search-input{
+  border-top-left-radius: 14px;
+  border-bottom-left-radius: 14px;
+  width: 50%;
+  color: rgb(187, 184, 184);
+}
+
+.btn-search{
+  background-color:#FD5C63;
+  color: white;
+  border-top-right-radius: 14px;
+  border-bottom-right-radius: 14px;
+  padding: 0 14px;
+  transition: 0.1s;
+
+  .fas{
+    font-size: 22px;
+    transition: 0.1s;
+  }
+
+  :hover{
+    color: #FD5C63;
+  }
+
+  .fas:hover{
+    font-size: 22px;
+    color: #FD5C63;
+  }
+}

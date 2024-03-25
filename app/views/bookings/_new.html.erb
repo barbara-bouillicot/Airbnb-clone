@@ -1,10 +1,10 @@
-<div class="container w-25 my-3">
-  <h1> Make a new booking</h1>
+<div class="container my-3">
 
   <%= simple_form_for([@listing, @booking]) do |f| %>
     <%= f.input :start_date, as: :string, input_html: { data: { controller: "datepicker" } } %>
     <%= f.input :end_date, as: :string, input_html: { data: { controller: "datepicker" } } %>
-    <%= f.input :total %>
-    <%= f.submit class:"btn"%>
+    <%= f.input :price, input_html: { value: @listing.price }%>
+    <%= f.input :total, input_html: { value: @booking.calculate_total_price }%>
+    <%= f.submit class:"btn-app"%>
 <% end %>
 </div>

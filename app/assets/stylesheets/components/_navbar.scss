@@ -1,12 +1,31 @@
-.navbar-lewagon {
+.navbar{
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+.navbar-icons{
+  color: #FD5C63;
+  font-size: 24px;
+}
+
+.main-logo{
+  height: 120px;
+}
+
+#heart-icon{
+  color: #FD5C63;
+  font-size: 24px;
+  position: inherit;
+}
+
+.navbar {
   justify-content: space-between;
   background: white;
 }
 
-.navbar-lewagon .navbar-collapse {
+.navbar-collapse {
   flex-grow: 0;
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+
+.navbar-brand img{
+  width: 70px;
 }

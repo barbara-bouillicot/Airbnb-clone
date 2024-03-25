@@ -21,9 +21,15 @@ class ListingsController < ApplicationController
  end
 
  def show
-  @booking =Booking.new
+  @booking = Booking.new
   @listing = Listing.find(params[:id])
   @reviews = @listing.reviews
+  @markers = [
+    {
+      lat: @listing.latitude,
+      lng: @listing.longitude,
+      info_window_html: render_to_string(partial: "info_window", locals: {listing: @listing}),
+    }]
  end
 
  def new
