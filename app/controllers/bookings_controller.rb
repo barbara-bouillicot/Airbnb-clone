@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only:[:show, :destroy]
+  before_action :set_booking, only:[:show, :destroy, :update]
   before_action :authenticate_user!, only: [:new, :create]
 
 
@@ -10,7 +10,6 @@ class BookingsController < ApplicationController
   end
 
   def show
-    @booking = Booking.find(params[:id])
     @reviews = @booking.reviews
     @listing = @booking.listing
     @markers = [
@@ -41,7 +40,6 @@ class BookingsController < ApplicationController
   end
 
   def update
-    @booking = Booking.find(params[:id])
     if @booking.update(booking_params)
       redirect_to  bookings_path
     else

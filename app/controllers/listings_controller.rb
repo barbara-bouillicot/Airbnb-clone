@@ -22,7 +22,6 @@ class ListingsController < ApplicationController
 
  def show
   @booking = Booking.new(listing: @listing)
-  @listing = Listing.find(params[:id])
   @booking.total = @listing.price
   @reviews = @listing.reviews
   @markers = [
