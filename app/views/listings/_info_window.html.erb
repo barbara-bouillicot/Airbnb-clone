@@ -1,2 +1,33 @@
-<h2><%= listing.name %></h2>
-<p><%= listing.address %></p>
+<div class="card" data-controller="favorite-toggle">
+          <%= link_to listing_path(listing) do %>
+          <i class="fa-regular fa-heart" data-favorite-toggle-target="heart" data-action="click->favorite-toggle#toggle" data-listing-id="<%= listing.id %>"></i>
+          <div class="photos me-5 w-100 justify-content-center" style="display: block;">
+            <div id="carouselExampleControls<%= listing.id %>" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                <% listing.photos.each_with_index do |photo, index| %>
+                  <% if index.zero? %>
+                    <div class="carousel-item active window">
+                      <%= cl_image_tag photo.key, class: "d-block w-100" %>
+                    </div>
+                  <% else %>
+                    <div class="carousel-item window">
+                      <%= cl_image_tag photo.key, class: "d-block w-100" %>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+
+
+            </div>
+            <div class=" text-center">
+              <h3 class="text-center"><%= link_to listing.name, listing_path(listing) %></h3>
+              <% if listing.reviews.exists? %>
+              <p><i class="fa-solid fa-star"></i>  <%= listing.average_rating(listing).round(2) %></p>
+              <% end %>
+            </div>
+            <p><i class="fa-solid fa-location-pin"></i> <%= listing.location_by_city %></p>
+            <p><i class="fa-solid fa-paw"></i> <%= listing.maximum_pets  %></p>
+            <p><%= listing.price %>€ per night</p>
+          </div>
+          <% end %>
+        </div>

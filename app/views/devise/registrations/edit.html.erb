@@ -11,6 +11,42 @@
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
 
+    <%= f.input :email,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "email" }%>
+    <%= f.input :first_name,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "first_name" }%>
+    <%= f.input :last_name,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "last_name" }%>
+    <%= f.input :pet_name,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "pet_name" },
+                label: "Pets name"%>
+    <%= f.input :pet_pictures, as: :file,
+                required: true,
+                autofocus: true,
+                input_html:  { autocomplete: "photos", multiple: true } ,
+                label: "Add a photo of your pets:"%>
+    <%= f.input :address,
+                required: true,
+                autofocus: true,
+                input_html: {data: {address_autocomplete_target:  "address"}, class: "d-none"},
+                wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
+    <%= f.input :bio, as: :text,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "Bio" }%>
+    <%= f.input :profile_picture, as: :file,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "photo" },
+                label: "Add your profile photo: "%>
     <%= f.input :password,
                 hint: "leave it blank if you don't want to change it",
                 required: false,

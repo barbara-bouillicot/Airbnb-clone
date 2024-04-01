@@ -24,6 +24,8 @@ Rails.application.routes.draw do
       get :my_listings
     end
   end
-  resources :favorite_listings, only:[:index, :create, :destroy]
+  resources :favorite_listings, only:[:index, :create, :destroy] do
+    get :check, on: :member
+  end
 
 end

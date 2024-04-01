@@ -24,4 +24,10 @@ class FavoriteListingsController < ApplicationController
       head :not_found
     end
   end
+
+  def check
+    @listing = Listing.find(params[:id])
+    is_favorite = current_user.favorite_listings.exists?(listing_id: @listing.id)
+    render json: { isFavorite: is_favorite }
+  end
 end

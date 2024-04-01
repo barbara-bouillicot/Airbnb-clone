@@ -14,6 +14,7 @@
 
 body{
   background-color: white;
+  font-family: "Montserrat", sans-serif;
 }
 
 .booking{
@@ -35,4 +36,44 @@ body{
 a{
   text-decoration: none;
   color: black;
+}
+
+
+.photos-container {
+  width: 70%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.big-photo {
+  grid-column: 1;
+  max-width: 100%;
+  object-fit: cover;
+}
+
+.photos-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.photo {
+  max-width: 100%;
+  object-fit: cover;
+}
+
+.nav-link{
+  color:black;
+}
+
+.separation-line{
+  background-color: rgb(215, 212, 212);
+  height: 1px;
+  width: 100%;
 }

@@ -1,27 +1,31 @@
 <div class="container">
   <h2 class="mt-5"><%= @listing.name %></h2>
 
-  <div class="d-flex flex-wrap mb-5">
+<div class="photos-container">
+  <div class="big-photo">
     <% @listing.photos.each_with_index do |photo, index| %>
       <% if index.zero? %>
-        <div class="col-sm-6">
-          <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-        </div>
-      <% else %>
-        <% if index == 1 %>
-        <div class="col-sm-6">
-          <div class="row">
-        <% end %>
-          <div class="col-sm-6">
-            <%= cl_image_tag photo.key, height: 150, width: 200, crop: :fill %>
-          </div>
-        <% if (index + 1) % 2 == 0 %>
-          </div>
-        <% end %>
+        <%= cl_image_tag photo.key, width: 500, height: 500 %>
       <% end %>
     <% end %>
   </div>
+  <div class="photos-right">
+    <div class="grid">
+      <% @listing.photos.each_with_index do |photo, index| %>
+        <% if index != 0 %>
+          <% if index <= 3 %>
+            <div class="photo">
+              <%= cl_image_tag photo.key, width: 250, height: 245 %>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>
+
+
+
 
 <div class="container d-flex justify-content-between mt-5">
   <div class="reviews w-50">
@@ -29,10 +33,10 @@
     <% @reviews.each do |review| %>
       <div class="user d-flex">
         <div class="user-photo">
-          <%= cl_image_tag(review.booking.user.photo.key, class: "avatar", alt: "avatar") %>
+          <%= cl_image_tag(review.booking.user.profile_picture.key, class: "avatar", alt: "avatar") %>
         </div>
         <div class="user-infos mx-3">
-          <p><strong><%= review.booking.user.first_name %></strong><br><%= review.booking.user.address %></p>
+          <p><strong><%= review.booking.user.first_name %></strong><br><%= review.booking.user.location_by_city%></p>
         </div>
       </div>
       <p><i class="fa-solid fa-star"></i> <%= review.rating %></p>
@@ -46,7 +50,6 @@
       <button data-action="click->toggle#fire" class="btn-app">Book</button>
       <div data-toggle-target="togglableElement" class="d-none">-->
       <%= render "bookings/new", booking: @booking %>
-      <p>Total: </p>
       </div>
     </div>
     <% end %>
@@ -59,7 +62,7 @@
 <div class="container d-flex flex-column align-items-center my-5">
   <h3>Where is located the listing?</h3>
   <p><%= @listing.address %></p>
-  <div style="width: 90%; height: 400px;"
+  <div style="width: 90%; height: 400px"
     data-controller="map"
     data-map-markers-value="<%= @markers.to_json %>"
     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
@@ -69,5 +72,10 @@
 <div class="container d-flex flex-column align-items-center my-5">
   <h3>Who is the host?</h3>
   <p><%= @listing.user.first_name %></p>
-  <%= cl_image_tag @listing.user.photo.key, height: 150, width: 200, crop: :fill %>
+  <% if @listing.user.profile_picture.attached? %>
+  <%= link_to user_path(@listing.user) do %>
+    <%= cl_image_tag @listing.user.profile_picture.key, width: 200 , class: "rounded-circle" %>
+  <% end %>
+<% end %>
+<p><%= @listing.user.bio %></p>
 </div>

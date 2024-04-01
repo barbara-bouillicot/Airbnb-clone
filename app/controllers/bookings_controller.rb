@@ -2,15 +2,20 @@ class BookingsController < ApplicationController
   before_action :set_booking, only:[:show, :destroy]
 
   def index
-    @bookings = Booking.all
-    @booking_requests = current_user.listings.map do | listing|
-      listing.bookings
-    end.flatten
+    @bookings_made = current_user.bookings
+    @listings = Listing.where(user: current_user)
+    @booking_requests_received = Booking.where(listing: @listings)
   end
 
   def show
     @booking = Booking.find(params[:id])
     @reviews = @booking.reviews
+    @listing = @booking.listing
+    @markers = [
+    {
+      lat: @listing.latitude,
+      lng: @listing.longitude,
+    }]
   end
 
   def new
@@ -28,7 +33,7 @@ class BookingsController < ApplicationController
     if @booking.save
       redirect_to booking_path(@booking)
     else
-      render :new, status: :unprocessable_entity
+      render "bookings/_new", status: :unprocessable_entity
     end
   end
 
@@ -43,7 +48,7 @@ class BookingsController < ApplicationController
 
   def destroy
     @booking.destroy
-    redirect_to bookings_path, status: :see_other
+    redirect_to bookings_url, notice: "Booking successfully deleted!"
   end
 
   private
@@ -53,6 +58,6 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_date, :total, :status)
+    params.require(:booking).permit(:start_date, :end_date, :total, :status, :number_of_pets)
   end
 end

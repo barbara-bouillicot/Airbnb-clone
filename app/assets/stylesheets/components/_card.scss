@@ -3,12 +3,30 @@
 }
 
 .card {
-  width: 300px;
+  max-width: 300px;
   background-color: white;
   border: none;
   border-radius: 6px;
+  flex: 1 0 21%;
 }
 
 .fa-star{
   font-size: 14px;
+}
+
+/* card on profile page*/
+.profile-left{
+  padding: 30px;
+  height: auto;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border: 1px solid rgb(221, 221, 221);
+}
+
+/*booking show page*/
+
+.booking-card{
+  padding: 30px;
+  height: auto;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border: 1px solid rgb(221, 221, 221);
 }

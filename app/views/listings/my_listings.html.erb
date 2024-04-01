@@ -38,7 +38,9 @@
           </div>
           <div class="d-flex justify-content-between">
             <h3><%= link_to listing.name, listing_path(listing) %></h3>
-            <p><i class="fa-solid fa-star"></i> 4</p>
+             <% if listing.reviews.exists? %>
+              <p><i class="fa-solid fa-star"></i>  <%= listing.average_rating(listing).round(2) %></p>
+              <% end %>
           </div>
           <p><i class="fa-solid fa-location-pin"></i> <%= listing.address %></p>
           <p><i class="fa-solid fa-paw"></i> <%= listing.maximum_pets  %></p>

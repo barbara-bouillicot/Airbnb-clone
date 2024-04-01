@@ -20,15 +20,27 @@
     <%= f.input :pet_name,
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "pet_name" }%>
+                input_html: { autocomplete: "pet_name" },
+                label: "Pets name"%>
+    <%= f.input :pet_pictures, as: :file,
+                required: true,
+                autofocus: true,
+                input_html:  { autocomplete: "photos", multiple: true } ,
+                label: "Add a photo of your pets:"%>
     <%= f.input :address,
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "address" }%>
-    <%= f.input :photo, as: :file,
+                input_html: {data: {address_autocomplete_target:  "address"}, class: "d-none"},
+                wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
+    <%= f.input :bio, as: :text,
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "photo" }%>
+                input_html: { autocomplete: "Bio" }%>
+    <%= f.input :profile_picture, as: :file,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "photo" },
+                label: "Add your profile photo: "%>
     <%= f.input :password,
                 required: true,
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
@@ -39,7 +51,7 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
+    <%= f.button :submit, "Sign up", class:"btn-app" %>
   </div>
 <% end %>
 

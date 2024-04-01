@@ -1,5 +1,7 @@
 <div class="container">
 
+  <a href="#map" class="btn-map">See on map <i class="fa-solid fa-map-location-dot"></i></a>
+
   <div class="row justify-content-center">
     <div class="col-sm-8 mt-5">
       <%= form_with url: listings_path, method: :get, class: "d-flex justify-content-center " do %>
@@ -17,11 +19,11 @@
   </div>
 
   <div class="container mt-5">
-    <h1>All the listings</h1>
 
-    <div class="cards d-flex">
+    <div class="cards d-flex flex-wrap">
       <% @listings.each do |listing| %>
         <div class="card" data-controller="favorite-toggle">
+          <%= link_to listing_path(listing) do %>
           <i class="fa-regular fa-heart" data-favorite-toggle-target="heart" data-action="click->favorite-toggle#toggle" data-listing-id="<%= listing.id %>"></i>
           <div class="photos me-5 w-100 justify-content-center" style="display: block;">
             <div id="carouselExampleControls<%= listing.id %>" class="carousel slide" data-bs-ride="carousel">
@@ -50,24 +52,27 @@
             </div>
             <div class="d-flex justify-content-between">
               <h3><%= link_to listing.name, listing_path(listing) %></h3>
-              <p><i class="fa-solid fa-star"></i> 4</p>
+              <% if listing.reviews.exists? %>
+              <p><i class="fa-solid fa-star"></i>  <%= listing.average_rating(listing).round(2) %></p>
+              <% end %>
             </div>
-            <p><i class="fa-solid fa-location-pin"></i> <%= listing.address %></p>
+            <p><i class="fa-solid fa-location-pin"></i> <%= listing.location_by_city %></p>
             <p><i class="fa-solid fa-paw"></i> <%= listing.maximum_pets  %></p>
             <p><%= listing.price %>€ per night</p>
           </div>
+          <% end %>
         </div>
       <% end %>
     </div>
   </div>
 
 
-  <div class="container d-flex justify-content-end my-5">
-    <div style="width: 60%; height: 400px;"
+  <section class="container d-flex justify-content-end my-5" id="map">
+    <div style="width: 100%; height: 600px;"
       data-controller="map"
       data-map-markers-value="<%= @markers.to_json %>"
       data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
-  </div>
+  </section>
 
 </div>

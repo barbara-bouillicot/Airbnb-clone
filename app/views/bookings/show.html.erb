@@ -1,17 +1,45 @@
-<div class="container">
-  <h2>booking details</h2>
-  <%= @booking.id %>
-  <%= @booking.total %>
+<div class="container d-flex justify-content-center flex-column align-items-center my-5 booking-card">
+  <h2>Your booking details:</h2>
+  <p class="my-3">Your booking is: <strong><%= @booking.status %></strong></p>
+  <%= link_to listing_path(@booking.listing) do %>
+    <h3><strong><%=  @booking.listing.name %></strong></h3>
+  <% end %>
+  <%= link_to user_path(@booking.listing.user) do %>
+    <p>by  <%= cl_image_tag(@booking.listing.user.profile_picture.key, class: "avatar") %> </p>
+  <% end %>
+  <div class="d-flex w-50 justify-content-around mt-3">
+    <div>
+      <p><strong>Check-in:</strong></p>
+      <p><%=  @booking.start_date.strftime("%a, %B %d, %Y") %></p>
+    </div>
+    <div>
+      <p><strong>Check-out:</strong></p>
+      <p><%=  @booking.end_date.strftime("%a, %B %d, %Y") %></p>
+    </div>
+  </div>
+  <p><strong>Address:</strong></p>
+    <p><%= @booking.listing.address %></p>
+  <div class="container d-flex flex-column align-items-center my-5">
+    <div style="width: 60%; height: 300px"
+      data-controller="map"
+      data-map-markers-value="<%= @markers.to_json %>"
+      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
+  </div>
+  <p>Price per night (per pet): <%= @booking.listing.price %>€</p>
+  <p><%= @booking.booking_duration %> nights</p>
+  <p><%= @booking.number_of_pets %> pets</p>
+  <p><strong>Total: <%= @booking.calculate_total_price %> €</strong></p>
 
-  <%= link_to "delete",  bookings_path(@booking), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete #{@booking.id} from your bookings?"} %>
-  <%= link_to "Add a review",  new_booking_review_path(@booking) %>
+  <%= link_to "Cancel",  booking_path(@booking), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete #{@booking.id} from your bookings?"},  class: "btn-app" %>
 
-  <div class="reviews w-50">
-    <h2><%= @reviews.count %> Reviews</h2>
+  <div class="reviews w-50 mt-5">
+    <h2>Reviews: </h2>
+    <p><%= @reviews.count %> reviews</p>
     <% @reviews.each do |review| %>
       <div class="user d-flex">
         <div class="user-photo">
-          <%= cl_image_tag(review.booking.user.photo.key, class: "avatar", alt: "avatar") %>
+          <%= cl_image_tag(review.booking.user.profile_picture.key, class: "avatar", alt: "avatar") %>
         </div>
         <div class="user-infos mx-3">
           <p><strong><%= review.booking.user.first_name %></strong><br><%= review.booking.user.address %></p>
@@ -21,4 +49,5 @@
       <p><%= review.comment %></p>
     <% end %>
   </div>
+    <%= link_to "Add a review",  new_booking_review_path(@booking), class: "btn-app" %>
 </div>
