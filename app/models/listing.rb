@@ -9,7 +9,8 @@ class Listing < ApplicationRecord
   after_validation :geocode, if: :will_save_change_to_address?
 
 
-  validates :name, :address, :availability_from, :availability_to, :maximum_pets, :home_type, :price, :photos, presence: true
+  validates :name, :address, :availability_from, :availability_to, :maximum_pets, :home_type, :price, :photos, :description, presence: true
+  validates :description, length: { in: 20..500 }
 
   include PgSearch::Model
   pg_search_scope :search_by_name_address_and_home_type,

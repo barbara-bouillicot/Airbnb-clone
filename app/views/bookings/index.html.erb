@@ -29,11 +29,11 @@
           <tr>
             <td class="align-middle"><%= link_to booking.id, booking_path(booking) %></td>
             <% if booking.user.profile_picture.attached? %>
-              <td><%= cl_image_tag booking.user.profile_picture.key, class: 'avatar-bordered' %> <%= booking.user.first_name %></td>
+              <td><%= link_to cl_image_tag(booking.user.profile_picture.key, class: 'avatar-bordered'), user_path(booking.user) %> <%= booking.user.first_name %></td>
             <% end %>
-            <td class="align-middle"><%= booking.listing.name %></td>
-            <td class="align-middle"><%= booking.start_date %></td>
-            <td class="align-middle"><%= booking.end_date %></td>
+            <td class="align-middle"><%= link_to booking.listing.name,listing_path(booking.listing)  %></td>
+            <td class="align-middle"><%= booking.start_date.strftime(" %B %d, %Y") %></td>
+            <td class="align-middle"><%= booking.end_date.strftime(" %B %d, %Y") %></td>
             <td class="align-middle">
               <div class="booking-actions">
                 <% if booking.pending? && current_user == booking.listing.user %>
@@ -74,11 +74,11 @@
           <tr>
             <td class="align-middle"><%= link_to booking.id, booking_path(booking) %></td>
             <% if booking.user.profile_picture.attached? %>
-              <td><%= cl_image_tag booking.user.profile_picture.key, class: 'avatar-bordered' %> <%= booking.user.first_name %></td>
+              <td><%= link_to cl_image_tag(booking.user.profile_picture.key, class: 'avatar-bordered'), user_path(booking.user) %> <%= booking.user.first_name %></td>
             <% end %>
-            <td class="align-middle"><%= booking.listing.name %></td>
-            <td class="align-middle"><%= booking.start_date %></td>
-            <td class="align-middle"><%= booking.end_date %></td>
+            <td class="align-middle"><%= link_to booking.listing.name,listing_path(booking.listing)  %></td>
+            <td class="align-middle"><%= booking.start_date.strftime(" %B %d, %Y") %></td>
+            <td class="align-middle"><%= booking.end_date.strftime(" %B %d, %Y") %></td>
             <td class="align-middle">
               <div class="booking-actions d-flex">
                 <% if booking.pending? && current_user != booking.user %>

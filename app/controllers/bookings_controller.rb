@@ -1,5 +1,7 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only:[:show, :destroy]
+  before_action :authenticate_user!, only: [:new, :create]
+
 
   def index
     @bookings_made = current_user.bookings
@@ -34,6 +36,7 @@ class BookingsController < ApplicationController
       redirect_to booking_path(@booking)
     else
       render "bookings/_new", status: :unprocessable_entity
+      flash[:alert] = "You need to sign in or sign up before continuing."
     end
   end
 

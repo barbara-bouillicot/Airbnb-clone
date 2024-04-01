@@ -9,7 +9,7 @@
 
   <div class="cards d-flex">
     <% @listings.each do |listing| %>
-      <div class="card" data-controller="favorite-toggle">
+      <div class="card my-listing" data-controller="favorite-toggle">
       <i class="fa-regular fa-heart" data-favorite-toggle-target="heart" data-action="click->favorite-toggle#fire"></i>
         <div class="photos me-5 w-100 justify-content-center" style="display: block;">
           <div id="carouselExampleControls<%= listing.id %>" class="carousel slide" data-bs-ride="carousel">
@@ -42,7 +42,7 @@
               <p><i class="fa-solid fa-star"></i>  <%= listing.average_rating(listing).round(2) %></p>
               <% end %>
           </div>
-          <p><i class="fa-solid fa-location-pin"></i> <%= listing.address %></p>
+          <p><i class="fa-solid fa-location-pin"></i> <%= listing.location_by_city %></p>
           <p><i class="fa-solid fa-paw"></i> <%= listing.maximum_pets  %></p>
           <p><%= listing.price %>€ per night</p>
             <div class="d-flex justify-content-center">

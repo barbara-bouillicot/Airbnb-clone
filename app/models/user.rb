@@ -13,6 +13,7 @@ class User < ApplicationRecord
 
   validates :first_name, :last_name, :pet_name, :password, :address, presence: true
   validates :email, presence: true
+  validates :bio, length: { in: 20..200 }
 
   def location_by_city
     address = self.address.split(",")

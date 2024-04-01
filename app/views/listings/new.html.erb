@@ -13,6 +13,7 @@
     <%= f.input :maximum_pets %>
     <%= f.input :home_type, as: :select, collection: ["House", "Apartment", "House with Yard"], prompt: "Select Home Type" %>
     <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+    <%= f.input :description %>
     <%= f.input :price, label: "Price per night (per pet)"%>
     <%= f.submit class:"btn-app", value: "New listing"%>
 <% end %>
