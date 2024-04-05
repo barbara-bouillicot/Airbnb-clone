@@ -11,7 +11,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :first_name, :last_name, :pet_name, :password, :address, presence: true
+  validates :first_name, :last_name, :password, :address, presence: true
   validates :email, presence: true
   validates :bio, length: { in: 20..200 }
 
