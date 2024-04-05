@@ -1,7 +1,7 @@
 <div class="container my-3">
 
   <%= simple_form_for([@listing, @booking]) do |f| %>
-    <%= f.input :start_date, as: :string, input_html: { data: { controller: "datepicker" } }, label: "Check-in" %>
+    <%= f.input :start_date, as: :string, input_html: { data: { controller: "datepicker"} }, label: "Check-in" %>
     <%= f.input :end_date, as: :string, input_html: { data: { controller: "datepicker" } }, label: "Check-out"  %>
     <%= f.input :total, input_html: { value: @listing.price }, label: "Price per night (per pet)"%>
     <%= f.input :number_of_pets, as: :integer%>
