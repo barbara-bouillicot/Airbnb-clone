@@ -3,7 +3,7 @@ class User < ApplicationRecord
   has_many :reviews, through: :bookings, dependent: :destroy
   has_many :favorite_listings, dependent: :destroy
   has_many :listings, dependent: :destroy
-  has_many :listings, through: :favorite_listings, dependent: :destroy
+
   has_one_attached :profile_picture
   has_many_attached :pet_pictures
   # Include default devise modules. Others available are:

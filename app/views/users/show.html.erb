@@ -22,7 +22,7 @@
           <% end %>
         </div>
         <h1><%= @user.first_name %></h1>
-        <p><%= @user.listings.count %> listings</p>
+        <p><%= @listings.count %> listings</p>
         <% if @user.pet_pictures.attached? %>
          <p>My fur babies: </p>
           <% @user.pet_pictures.each do |photo| %>
