@@ -47,14 +47,20 @@ a{
 }
 
 .big-photo {
-  grid-column: 1;
-  max-width: 100%;
-  object-fit: cover;
+
+  img{
+    grid-column: 1;
+    object-fit: cover;
+}
 }
 
 .photos-right {
   display: flex;
   flex-direction: column;
+
+  img{
+    object-fit: cover;
+  }
 }
 
 .grid {
@@ -63,10 +69,7 @@ a{
   gap: 10px;
 }
 
-.photo {
-  max-width: 100%;
-  object-fit: cover;
-}
+
 
 .nav-link{
   color:black;
