@@ -10,8 +10,9 @@ class BookingsController < ApplicationController
   end
 
   def show
-    @reviews = @booking.reviews
     @listing = @booking.listing
+    @review = Review.new(booking: @booking)
+    @reviews = @booking.reviews
     @markers = [
     {
       lat: @listing.latitude,

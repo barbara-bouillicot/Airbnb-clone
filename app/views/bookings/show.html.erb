@@ -33,6 +33,7 @@
 
   <%= link_to "Cancel",  booking_path(@booking), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete #{@booking.id} from your bookings?"},  class: "btn-app" %>
 
+  <div class="container-bottom d-flex justify-content-between w-50">
   <div class="reviews w-50 mt-5">
     <h2>Reviews: </h2>
     <p><%= @reviews.count %> reviews</p>
@@ -42,12 +43,22 @@
           <%= cl_image_tag(review.booking.user.profile_picture.key, class: "avatar", alt: "avatar") %>
         </div>
         <div class="user-infos mx-3">
-          <p><strong><%= review.booking.user.first_name %></strong><br><%= review.booking.user.address %></p>
+          <p><strong><%= review.booking.user.first_name %></strong><br><%= review.booking.user.location_by_city %></p>
         </div>
       </div>
       <p><i class="fa-solid fa-star"></i> <%= review.rating %></p>
       <p><%= review.comment %></p>
     <% end %>
   </div>
-    <%= link_to "Add a review",  new_booking_review_path(@booking), class: "btn-app" %>
+   <% unless current_user == @booking.listing.user %>
+  <div class="review-toggle">
+  <div data-controller="toggle" class="mt-5">
+    <button data-action="click->toggle#fire" class="btn-app">Leave a review</button>
+      <div data-toggle-target="togglableElement" class="d-none">
+        <%= render "reviews/new", booking: @booking %>
+      </div>
+  </div>
+  </div>
+  <% end %>
+  </div>
 </div>

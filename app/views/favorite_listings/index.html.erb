@@ -2,6 +2,7 @@
   <h1 class="mt-5">My Favorites listings</h1>
 
   <div class="cards d-flex mt-5">
+    <% if @favorites.any? %>
     <% @favorites.each do |favorite| %>
       <div class="card">
         <div id="carouselExampleControls<%= favorite.listing.id %>" class="carousel slide" data-bs-ride="carousel">
@@ -28,16 +29,23 @@
             <span class="sr-only">Next</span>
           </a>
         </div>
-        <div class="d-flex justify-content-between">
-          <h3><%= link_to favorite.listing.name, listing_path(favorite.listing.id) %></h3>
-            <% if favorite.listing.reviews.exists? %>
-              <p><i class="fa-solid fa-star"></i>  <%= favorite.listing.average_rating(favorite.listing).round(2) %></p>
-              <% end %>
-        </div>
-        <p><i class="fa-solid fa-location-pin"></i> <%= favorite.listing.address %></p>
+        <div class="d-flex justify-content-between mt-3">
+              <div class="w-75" >
+                <h3><%= favorite.listing.name %></h3>
+              </div>
+              <div class="w-25 mt-1" >
+                <% if favorite.listing.reviews.exists? %>
+                  <p class="rating-size"><i class="fa-solid fa-star"></i>  <%= favorite.listing.average_rating(listing).round(2) %></p>
+                <% end %>
+              </div>
+            </div>
+        <p><i class="fa-solid fa-location-pin"></i> <%= favorite.listing.location_by_city %></p>
         <p><i class="fa-solid fa-paw"></i> <%= favorite.listing.maximum_pets  %></p>
         <p><%= favorite.listing.price %>€ per night</p>
       </div>
     <% end %>
   </div>
+  <% else %>
+  <p><em>You have no favorite listing yet...</em></p>
+  <% end %>
 </div>

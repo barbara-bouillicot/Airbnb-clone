@@ -1,5 +1,5 @@
 <div class="container">
-  <h2 class="mt-5"><%= @listing.name %></h2>
+  <h2 class="my-3"><%= @listing.name %></h2>
 
 <div class="photos-container">
   <div class="big-photo">
@@ -24,12 +24,20 @@
   </div>
 </div>
 
-
+<div class="about-listing mt-3 d-flex">
+  <div class="mx-3"><i class="fa-solid fa-paw"></i><%= @listing.maximum_pets %></p></div>
+  <div class="mx-3"><i class="fa-solid fa-house-chimney">  </i><%= @listing.home_type %></div>
+  <div class="mx-3"><i class="fa-solid fa-location-dot">  </i><%= @listing.location_by_city %></div>
+</div>
 
 
 <div class="container d-flex justify-content-between mt-5">
   <div class="reviews w-50">
-    <h2><%= @reviews.count %> Reviews</h2>
+    <div class="description h-25">
+      <%= @listing.description %>
+    </div>
+    <div class="reviews mt-5 h-75">
+    <h2 class="mb-3"><%= @reviews.count %> Reviews</h2>
     <% @reviews.each do |review| %>
       <div class="user d-flex">
         <div class="user-photo">
@@ -42,15 +50,16 @@
       <p><i class="fa-solid fa-star"></i> <%= review.rating %></p>
       <p><%= review.comment %></p>
     <% end %>
+    </div>
   </div>
   <% unless current_user == @listing.user %>
-  <div class="booking w-50">
-    <h3><strong><%= @listing.price %> € </strong>per day</h3>
+    <div class="booking w-50">
+      <h3><strong><%= @listing.price %> € </strong>per day</h3>
    <!--<div data-controller="toggle" class="mt-5">
       <button data-action="click->toggle#fire" class="btn-app">Book</button>
       <div data-toggle-target="togglableElement" class="d-none">-->
       <%= render "bookings/new", booking: @booking %>
-      </div>
+  </div>
     </div>
     <% end %>
 </div>
@@ -60,7 +69,7 @@
 </div>
 
 <div class="container d-flex flex-column align-items-center my-5">
-  <h3>Where is located the listing?</h3>
+  <h3>Where is located this place?</h3>
   <p><%= @listing.address %></p>
   <div style="width: 90%; height: 400px"
     data-controller="map"
@@ -70,14 +79,14 @@
 </div>
 
 <div class="container d-flex flex-column align-items-center my-5">
-  <h3>Who is the host?</h3>
-  <p><%= @listing.user.first_name %></p>
+  <h2>Who is the host?</h2>
+  <p class="h3 my-3"><%= @listing.user.first_name %></p>
   <% if @listing.user.profile_picture.attached? %>
   <%= link_to user_path(@listing.user) do %>
     <%= cl_image_tag @listing.user.profile_picture.key, width: 200 , class: "rounded-circle" %>
   <% end %>
 <% end %>
-<div class="mt-3">
-  <p><%= @listing.user.bio %></p>
+<div class="mt-3 w-50 text-center">
+  <p class="text-justify"><em> <i class="fa-solid fa-quote-left"></i>   <%= @listing.user.bio %></em></p>
 </div>
 </div>

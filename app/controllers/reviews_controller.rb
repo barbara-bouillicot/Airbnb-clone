@@ -12,7 +12,7 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to booking_path(@booking)
     else
-      render :new, status: :unprocessable_entity
+      render :_new, status: :unprocessable_entity
     end
   end
 

@@ -35,7 +35,7 @@
           <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <% if user_signed_in? && current_user.profile_picture.attached? %>
             <%= cl_image_tag(current_user.profile_picture.key, class: "avatar", alt: "dropdown menu") %>
-            <% else %>
+            <% elsif user_signed_in? %>
             <%= image_tag("https://cdn-icons-png.freepik.com/512/8742/8742495.png", class: "avatar") %>
             <% end %>
           </a>

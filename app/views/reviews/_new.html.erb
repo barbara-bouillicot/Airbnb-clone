@@ -1,0 +1,8 @@
+<div class="container my-3">
+
+  <%= simple_form_for([@booking, @review]) do |f| %>
+    <%= f.input :comment %>
+    <%= f.input :rating, label:"Rating (between 1 and 5)"%>
+    <%= f.submit class:"btn-app", value:"Add"%>
+<% end %>
+</div>

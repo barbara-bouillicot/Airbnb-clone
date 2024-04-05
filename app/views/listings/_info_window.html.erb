@@ -19,15 +19,16 @@
 
 
             </div>
-            <div class=" text-center">
-              <h3 class="text-center"><%= link_to listing.name, listing_path(listing) %></h3>
-              <% if listing.reviews.exists? %>
+            <div class="container text-center mt-3">
+              <h3 class="map-window-name"><%= link_to listing.name, listing_path(listing) %></h3>
+
+            <% if listing.reviews.exists? %>
               <p><i class="fa-solid fa-star"></i>  <%= listing.average_rating(listing).round(2) %></p>
               <% end %>
-            </div>
             <p><i class="fa-solid fa-location-pin"></i> <%= listing.location_by_city %></p>
             <p><i class="fa-solid fa-paw"></i> <%= listing.maximum_pets  %></p>
             <p><%= listing.price %>€ per night</p>
           </div>
           <% end %>
+          </div>
         </div>

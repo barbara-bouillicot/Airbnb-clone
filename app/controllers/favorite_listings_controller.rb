@@ -1,4 +1,5 @@
 class FavoriteListingsController < ApplicationController
+  before_action :authenticate_user!
   def index
     @favorites = current_user.favorite_listings.includes(:listing)
   end

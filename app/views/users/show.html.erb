@@ -3,12 +3,12 @@
     <div class="d-flex justify-content-around m-3">
       <% if @user == current_user %>
         <h3>My profile</h3>
-        <div class="d-flex justify-content-evenly w-50">
+        <div class="d-flex justify-content-end w-50">
           <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, style: "text-decoration: none" do %>
-            <i class="fa-solid fa-right-from-bracket"></i>
+            <i class="fa-solid fa-right-from-bracket m-3"></i>
           <% end %>
           <%= link_to edit_registration_path(current_user) do %>
-            <i class="fa-solid fa-user-pen"></i>
+            <i class="fa-solid fa-user-pen m-3"></i>
           <% end %>
         </div>
       <% end %>
