@@ -2,7 +2,7 @@ class User < ApplicationRecord
   has_many :bookings
   has_many :reviews, through: :bookings
   has_many :favorite_listings, dependent: :destroy
-  has_many :listings
+  has_many :listings, dependent: :destroy
   has_many :listings, through: :favorite_listings
   has_one_attached :profile_picture
   has_many_attached :pet_pictures
