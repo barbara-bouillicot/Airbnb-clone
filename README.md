@@ -21,7 +21,7 @@ First personal project after my bootcamp. This is an Airbnb clone for pets! The 
 
 💡 Improvements
 -----
-- **Responsive desgin**: So far the web app is designed for laptop screens only.
+- **Responsive design**: So far the web app is designed for laptop screens only.
 
 📸 Video
 -----
